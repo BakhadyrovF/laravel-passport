@@ -1,7 +1,7 @@
 # Laravel Passport Authentication With Oauth2  
 ## Grant Type - Password  
 
-#### In my authentication, the client does not need to add an access token to the headers every time, it #### does not need to refresh the access_token when it expires
+#### In my authentication, the client does not need to add an access token to the headers every time, it does not need to refresh the access_token when it expires
 #### All logic is contained on the server side and rightly so.
 #### Because storing tokens on the client side is very insecure and wrong.  
 
