@@ -75,7 +75,7 @@ class AuthService implements TokenGenerator, TokenCache
             ->create($data);
 
         if (is_bool($oauthTokens = $this->generateTokens([
-            'email' => $data['email'],
+            'username' => $data['email'],
             'password' => $request->password
         ]))) {
             return response()->json([
