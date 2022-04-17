@@ -10,4 +10,9 @@ interface TokenCache
      * @return bool
      */
     public function storeTokens(object $tokens);
+
+    /**
+     * Remove tokens fro http only cookie
+     */
+    public function removeTokens();
 }

@@ -56,11 +56,11 @@ class AuthService implements TokenGenerator, TokenCache
 
     public function storeTokens(object $tokens)
     {
-        setcookie('access_token', $tokens->access_token, addSeconds(Passport::$tokensExpireIn->s), '/api', '', false, true);
-        setcookie('refresh_token', $tokens->refresh_token, time() + 7776000, '/api', '', false, true);
+        setcookie('access_token', $tokens->access_token, toSeconds(Passport::$tokensExpireIn->h, 'hours'), '/api', '', false, true);
+        setcookie('refresh_token', $tokens->refresh_token, toSeconds(Passport::$refreshTokensExpireIn->d, 'days'), '/api', '', false, true);
     }
 
-    protected function removeTokens()
+    public function removeTokens()
     {
         setcookie('refresh_token', null, time(), '/api');
         setcookie('access_token', null, time(), '/api');
@@ -146,7 +146,7 @@ class AuthService implements TokenGenerator, TokenCache
         ], self::TYPE_REFRESH_TOKEN);
 
         if (is_bool($oauthTokens)) {
-            setcookie('refresh_token', null, time(), '/api');
+            $this->removeTokens();
             throw new AuthorizationException('Unauthenticated', 401);
         }
 
